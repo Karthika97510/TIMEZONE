@@ -1,0 +1,436 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TIMEZONE | Every Second Counts</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
+</head>
+<body>
+ 
+  
+<header class="site-header">
+  <div class="header-one-line">
+
+    <!-- Logo: left -->
+    <a href="index.html" class="timezone-logo">
+      <img
+        src="./timezone-logo.png"
+        alt="TIMEZONE Watch Store"
+        class="timezone-logo-image"
+      >
+    </a>
+
+    
+<nav class="main-nav">
+  <a href="#home">Home</a>
+  <a href="#new-arrivals">New Arrivals</a>
+  <a href="#men">Men</a>
+  <a href="#women">Women</a>
+  <a href="#kids">Kids</a>
+  <a href="#mega-sale" class="sale-link">MEGA SALE</a>
+  <a href="#price-filters">Price Filters</a>
+  <a href="#wrist-gallery">Style Inspiration</a>
+</nav>
+
+    <!-- Search -->
+    <form id="searchForm" class="search-box">
+      <input
+        id="searchInput"
+        type="search"
+        placeholder="Search watches..."
+        aria-label="Search watches"
+      >
+      <button type="submit" aria-label="Search">⌕</button>
+    </form>
+
+    <!-- Account actions: right -->
+    <div class="header-actions">
+      <a href="login.html" class="account-link">♡ Login</a>
+
+      <a href="wishlist.html" class="wishlist-nav-link">♡ Wishlist</a>
+
+      <button class="bag-button" id="openBag" type="button">
+        ♡ Bag <span id="bagCount">0</span>
+      </button>
+    </div>
+
+  </div>
+
+  <!-- Slim shipping message -->
+  <div class="shipping-banner">
+    <span>✦ A LITTLE LUXURY, EVERY DAY</span>
+    <span>·</span>
+    <span>Free shipping on demo orders over ₹1,999</span>
+  </div>
+</header>
+
+  
+  <main>
+     
+    <!-- TIMEZONE Luxury Hero Banner -->
+<section class="hero-banner" id="home">
+  <img
+    src="C:\Users\acer\OneDrive\Desktop\TIMEZONE\TIMEZONE\TIMEZONE\banner.png"
+    alt="TIMEZONE luxury watch banner — Every second tells your story"
+    class="hero-banner-image"
+  >
+</section>
+
+
+<!-- New Arrivals -->
+<section id="new-arrivals" class="collection-section">
+  <div class="section-heading">
+    <div>
+      <p class="eyebrow">JUST LANDED</p>
+      <h2>New <em>Arrivals</em></h2>
+      <p>Discover your next favourite timepiece.</p>
+    </div>
+  </div>
+  <div id="newArrivalsGrid" class="product-grid"></div>
+</section>
+
+<!-- Mega Sale -->
+<section id="mega-sale" class="collection-section women-section">
+  <div class="section-heading">
+    <div>
+      <p class="eyebrow">SPECIAL OFFERS</p>
+      <h2>Mega <em>Sale</em></h2>
+      <p>Explore selected watches at special prices.</p>
+    </div>
+  </div>
+  <div id="megaSaleGrid" class="product-grid"></div>
+</section>
+
+
+<!-- Price Filters -->
+<section id="price-filters" class="collection-section">
+  <div class="section-heading">
+    <div>
+      <p class="eyebrow">FIND YOUR PERFECT WATCH</p>
+      <h2>Shop by <em>Price</em></h2>
+      <p>Choose a budget to discover watches you love.</p>
+    </div>
+  </div>
+
+  <div class="price-filter-controls">
+    <label for="priceRange">Maximum price:</label>
+    <select id="priceRange">
+      <option value="all">All prices</option>
+      <option value="1000">Under ₹1,000</option>
+      <option value="2000">Under ₹2,000</option>
+      <option value="3000">Under ₹3,000</option>
+      <option value="5000">Under ₹5,000</option>
+    </select>
+    <button type="button" id="applyPriceFilter" class="primary-button">
+      Apply Filter
+    </button>
+    <button type="button" id="clearPriceFilter" class="text-link">
+      Clear
+    </button>
+  </div>
+
+  <div id="priceFilterGrid" class="product-grid"></div>
+  <p id="priceFilterMessage" class="muted"></p>
+</section>
+
+
+     
+    <section class="benefits" aria-label="Store highlights">
+      <div><span>✧</span> Everyday elegance</div>
+      <div><span>♡</span> Styles for everyone</div>
+      <div><span>◷</span> Made for your moments</div>
+    </section>
+
+    <section class="collection-section" id="men">
+      <div class="section-heading">
+        <div>
+          <p class="eyebrow">CLASSIC WITH CHARACTER</p>
+          <h2>For <em>him.</em></h2>
+          <p>Confident designs for workdays, weekends and everything between.</p>
+        </div>
+        <span class="section-number">01 / MEN</span>
+      </div>
+      <div class="product-grid" id="menProducts"></div>
+    </section>
+
+    <section class="collection-section women-section" id="women">
+      <div class="section-heading">
+        <div>
+          <p class="eyebrow">A TOUCH OF ROSE GOLD</p>
+          <h2>For <em>her.</em></h2>
+          <p>Soft details, graceful silhouettes and little everyday luxuries.</p>
+        </div>
+        <span class="section-number">02 / WOMEN</span>
+      </div>
+      <div class="product-grid" id="womenProducts"></div>
+    </section>
+
+    <section class="collection-section kids-section" id="kids">
+      <div class="section-heading">
+        <div>
+          <p class="eyebrow">LITTLE MOMENTS, BIG MEMORIES</p>
+          <h2>For <em>little ones.</em></h2>
+          <p>Playful colours and cheerful styles for young explorers.</p>
+        </div>
+        <span class="section-number">03 / KIDS</span>
+      </div>
+      <div class="product-grid" id="kidsProducts"></div>
+    </section>
+
+    
+<section class="wrist-section" id="wrist-gallery">
+  <div class="wrist-intro">
+    <p class="eyebrow">MORE THAN A TIMEPIECE</p>
+    <h2>See it <em>on the wrist.</em></h2>
+    <p>
+      A little style inspiration for your everyday outfits.
+      Explore how wristwatches can complement different looks.
+    </p>
+  </div>
+
+  <div class="wrist-gallery">
+    <article class="wrist-card">
+      <img src="https://images.unsplash.com/photo-1529139574466-a303027c1d8b?auto=format&fit=crop&w=800&q=85"
+           alt="Fashion outfit inspiration" loading="lazy">
+      <div class="wrist-caption">
+        <span>01</span>
+        <div>
+          <h3>Everyday chic</h3>
+          <p>Easy styles for every day</p>
+        </div>
+      </div>
+    </article>
+
+    <article class="wrist-card wrist-card-featured">
+      <img src="https://images.unsplash.com/photo-1524805444758-089113d48a6d?auto=format&fit=crop&w=800&q=85"
+           alt="Wristwatch lifestyle inspiration" loading="lazy">
+      <div class="wrist-caption">
+        <span>02</span>
+        <div>
+          <h3>Timeless details</h3>
+          <p>Make the little things count</p>
+        </div>
+      </div>
+    </article>
+
+    <article class="wrist-card">
+      <img src="https://images.unsplash.com/photo-1523170335258-f5ed11844a49?auto=format&fit=crop&w=800&q=85"
+           alt="Classic wristwatch styling inspiration" loading="lazy">
+      <div class="wrist-caption">
+        <span>03</span>
+        <div>
+          <h3>Classic moments</h3>
+          <p>Style that stays with you</p>
+        </div>
+      </div>
+    </article>
+
+    <article class="wrist-card">
+      <img src="https://images.unsplash.com/photo-1523170335258-f5ed11844a49?auto=format&fit=crop&w=700&q=85"
+           alt="Classic luxury watch inspiration" loading="lazy">
+      <div class="wrist-caption">
+        <span>04</span>
+        <div>
+          <h3>Old Money</h3>
+          <p>Timeless watches, refined details, effortless luxury.</p>
+        </div>
+      </div>
+    </article>
+
+    <article class="wrist-card">
+      <img src="https://images.unsplash.com/photo-1524805444758-089113d48a6d?auto=format&fit=crop&w=700&q=85"
+           alt="Minimalist watch style inspiration" loading="lazy">
+      <div class="wrist-caption">
+        <span>05</span>
+        <div>
+          <h3>Minimalist Chic</h3>
+          <p>Simple silhouettes for an elegant everyday look.</p>
+        </div>
+      </div>
+    </article>
+
+    <article class="wrist-card">
+      <img src="https://images.unsplash.com/photo-1547996160-81dfa63595aa?auto=format&fit=crop&w=700&q=85"
+           alt="Statement watch style inspiration" loading="lazy">
+      <div class="wrist-caption">
+        <span>06</span>
+        <div>
+          <h3>Rose Gold Glam</h3>
+          <p>Elegant metallic details for your standout moments.</p>
+        </div>
+      </div>
+    </article>
+
+    <article class="wrist-card">
+      <img src="https://images.unsplash.com/photo-1508685096489-7aacd43bd3b1?auto=format&fit=crop&w=700&q=85"
+           alt="Sporty modern watch inspiration" loading="lazy">
+      <div class="wrist-caption">
+        <span>07</span>
+        <div>
+          <h3>Sporty Luxe</h3>
+          <p>Bold, modern watches with an active edge.</p>
+        </div>
+      </div>
+    </article>
+  </div>
+
+  <p class="image-note">
+    Reference photography is for style inspiration. Images may show watches
+    different from the products listed above.
+  </p>
+</section>
+
+
+    <section class="offer-banner">
+      <div>
+        <p class="eyebrow">A LITTLE GIFT FROM US</p>
+        <h2>Make time for <em>something lovely.</em></h2>
+        <p>Try our sample offer code at checkout.</p>
+      </div>
+      <button class="primary-button" id="showOffer" type="button">
+        Reveal my offer
+      </button>
+    </section>
+
+    <section class="newsletter">
+      <p class="eyebrow">STAY IN THE LOOP</p>
+      <h2>Good things take <em>time.</em></h2>
+      <p>This demo newsletter is here for the look and feel of the storefront.</p>
+      <form id="newsletterForm">
+        <input
+          type="email"
+          placeholder="Your email address"
+          aria-label="Your email address"
+          required
+        >
+        <button type="submit">Count me in</button>
+      </form>
+      <p id="newsletterMessage" class="form-message" aria-live="polite"></p>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <a class="logo footer-logo" href="#home">
+      TIME<span>ZONE</span>
+      <small>EVERY SECOND COUNTS</small>
+    </a>
+    <p>Find beauty in every moment.</p>
+    <div class="footer-links">
+      <a href="#men">Men</a>
+      <a href="#women">Women</a>
+      <a href="#kids">Kids</a>
+      <a href="#wrist-gallery">Style Inspiration</a>
+    </div>
+    <small>© 2026 TIMEZONE · Demo storefront for learning purposes</small>
+  </footer>
+
+  <div
+    class="modal-overlay"
+    id="welcomeModal"
+    role="dialog"
+    aria-modal="true"
+    aria-labelledby="welcomeTitle"
+  >
+    <div class="modal-card welcome-card">
+      <button class="modal-close" type="button" data-close="welcomeModal" aria-label="Close">×</button>
+      <p class="eyebrow">WELCOME TO TIMEZONE</p>
+      <h2 id="welcomeTitle">Your next favourite<br><em>moment awaits.</em></h2>
+      <p>Explore a collection of watches made to complement your everyday style.</p>
+      <button class="primary-button" type="button" data-close="welcomeModal">
+        Explore the collection
+      </button>
+    </div>
+  </div>
+
+  <div
+    class="modal-overlay"
+    id="offerModal"
+    role="dialog"
+    aria-modal="true"
+    aria-labelledby="offerTitle"
+  >
+    <div class="modal-card">
+      <button class="modal-close" type="button" data-close="offerModal" aria-label="Close">×</button>
+      <p class="eyebrow">A LITTLE SOMETHING SPECIAL</p>
+      <h2 id="offerTitle">A sweeter way to shop.</h2>
+      <p>Use this sample demo coupon to see the offer interaction.</p>
+      <div class="coupon-code">TIME30</div>
+      <p class="muted">Demo only — no real payment or discount is processed.</p>
+      <button class="primary-button" id="copyCoupon" type="button">Copy offer code</button>
+      <p class="form-message" id="couponMessage" aria-live="polite"></p>
+    </div>
+  </div>
+
+  <div class="drawer-overlay" id="bagOverlay">
+    <aside class="bag-drawer" aria-label="Shopping bag">
+      <div class="drawer-heading">
+        <div>
+          <p class="eyebrow">YOUR PICKS</p>
+          <h2>Your bag <span id="drawerCount">(0)</span></h2>
+        </div>
+        <button class="modal-close" id="closeBag" type="button" aria-label="Close bag">×</button>
+      </div>
+      <div class="bag-items" id="bagItems"></div>
+      <div class="bag-bottom">
+        <div class="subtotal-row">
+          <span>Subtotal</span>
+          <strong id="bagSubtotal">₹0</strong>
+        </div>
+        <p class="muted">Shipping and taxes are not included in this demo.</p>
+        <label class="coupon-label" for="couponInput">Offer code</label>
+        <div class="coupon-entry">
+          <input id="couponInput" type="text" placeholder="Enter code">
+          <button id="applyCoupon" type="button">Apply</button>
+        </div>
+        <p id="bagMessage" class="form-message" aria-live="polite"></p>
+        <div class="subtotal-row total-row">
+          <span>Estimated total</span>
+          <strong id="bagTotal">₹0</strong>
+        </div>
+        <button class="primary-button checkout-button" id="checkoutButton" type="button">
+          Continue to checkout
+        </button>
+        <button class="clear-bag" id="clearBag" type="button">Clear bag</button>
+        <p class="muted demo-notice">Demo checkout only. No payment details are collected.</p>
+      </div>
+    </aside>
+  </div>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+
+<!-- Special Offer Popup -->
+<div class="offer-overlay" id="offerPopup">
+    <div class="offer-box">
+      <div class="offer-picture">
+    <img
+        src="https://images.unsplash.com/photo-1513201099705-a9746e1e201f?auto=format&fit=crop&w=600&q=85"
+        alt="Beautiful gift box with ribbon"
+    >
+</div>
+        <button class="offer-close" id="closeOffer" aria-label="Close offer">&times;</button>
+
+        <p class="offer-label">A LITTLE GIFT FOR YOU</p>
+
+        <h2>Time for Something <span>Beautiful!</span></h2>
+
+        <p>Enjoy an exclusive discount on your favourite timepieces.</p>
+
+        <div class="offer-discount">30% OFF</div>
+
+        <p class="offer-code">Use code: <strong>TIME30</strong></p>
+        <div class="coupon-decoration">
+    🎟️ SPECIAL OFFER · TIME30
+</div>
+        <button class="offer-shop" id="shopOffer">Explore Collection</button>
+
+        <p class="offer-note">Your next favourite watch awaits ♡</p>
+    </div>
+</div>
+ 
+
+</body>
+</html>

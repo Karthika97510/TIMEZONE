@@ -1,0 +1,445 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Account | TIMEZONE</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            background: #fff5f2;
+            color: #493b3b;
+            min-height: 100vh;
+        }
+
+        .header {
+            padding: 22px 7%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: #fffaf5;
+            border-bottom: 1px solid #f1dcd7;
+        }
+
+        .logo {
+            font-size: 28px;
+            font-weight: 800;
+            letter-spacing: 4px;
+            color: #a76672;
+            text-decoration: none;
+        }
+
+        .back-link {
+            color: #9c6670;
+            text-decoration: none;
+            font-size: 14px;
+        }
+
+        .page {
+            min-height: calc(100vh - 80px);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 35px 20px;
+        }
+
+        .card {
+            width: 100%;
+            max-width: 490px;
+            background: #fffdf9;
+            padding: 42px;
+            border-radius: 22px;
+            box-shadow: 0 15px 45px rgba(130, 79, 79, 0.12);
+        }
+
+        .eyebrow {
+            color: #b47a83;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            font-size: 11px;
+            font-weight: bold;
+            margin-bottom: 13px;
+        }
+
+        h1 {
+            font-size: 32px;
+            margin-bottom: 12px;
+        }
+
+        .subtitle {
+            color: #897b78;
+            font-size: 14px;
+            line-height: 1.7;
+            margin-bottom: 28px;
+        }
+
+        .form-group {
+            margin-bottom: 19px;
+        }
+
+        label {
+            display: block;
+            font-size: 13px;
+            font-weight: 600;
+            margin-bottom: 9px;
+        }
+
+        input {
+            width: 100%;
+            padding: 14px;
+            border: 1px solid #ead8d3;
+            border-radius: 9px;
+            background: #fffaf7;
+            font-size: 14px;
+            outline: none;
+        }
+
+        input:focus {
+            border-color: #c18a94;
+            box-shadow: 0 0 0 3px rgba(193, 138, 148, 0.12);
+        }
+
+        .password-wrap {
+            position: relative;
+        }
+
+        .password-wrap input {
+            padding-right: 65px;
+        }
+
+        .toggle {
+            position: absolute;
+            right: 12px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: transparent;
+            border: none;
+            color: #a76672;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        .terms {
+            display: flex;
+            align-items: flex-start;
+            gap: 9px;
+            margin: 5px 0 22px;
+            font-size: 12px;
+            color: #897b78;
+            line-height: 1.6;
+        }
+
+        .terms input {
+            width: auto;
+            margin-top: 3px;
+            accent-color: #b77c87;
+        }
+
+        .terms label {
+            margin: 0;
+            font-weight: normal;
+        }
+
+        .terms a, .login-link {
+            color: #a76672;
+            text-decoration: none;
+        }
+
+        .terms a:hover, .login-link:hover {
+            text-decoration: underline;
+        }
+
+        .submit-button {
+            width: 100%;
+            padding: 15px;
+            background: #b77c87;
+            border: none;
+            border-radius: 9px;
+            color: white;
+            font-size: 14px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: 0.25s;
+        }
+
+        .submit-button:hover {
+            background: #985e69;
+            transform: translateY(-1px);
+        }
+
+        .message {
+            display: none;
+            padding: 12px;
+            margin-top: 16px;
+            border-radius: 8px;
+            font-size: 13px;
+            line-height: 1.5;
+        }
+
+        .login-prompt {
+            text-align: center;
+            margin-top: 23px;
+            font-size: 13px;
+            color: #897b78;
+        }
+
+        .note {
+            text-align: center;
+            color: #a0928e;
+            font-size: 11px;
+            line-height: 1.6;
+            margin-top: 20px;
+        }
+
+        @media (max-width: 500px) {
+            .card {
+                padding: 30px 23px;
+            }
+
+            h1 {
+                font-size: 28px;
+            }
+
+            .logo {
+                font-size: 22px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header class="header">
+        <a href="index.html" class="logo">TIMEZONE</a>
+        <a href="index.html" class="back-link">← Back to Shopping</a>
+    </header>
+
+    <main class="page">
+        <section class="card">
+
+            <p class="eyebrow">Join the TIMEZONE family</p>
+            <h1>Create your account</h1>
+            <p class="subtitle">
+                A little more style, a little more you.
+                Create your account and explore our collection.
+            </p>
+
+            <form id="registerForm">
+
+                <div class="form-group">
+                    <label for="name">Full Name</label>
+                    <input
+                        type="text"
+                        id="name"
+                        placeholder="Enter your full name"
+                        autocomplete="name"
+                        required
+                        minlength="2"
+                    >
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Email Address</label>
+                    <input
+                        type="email"
+                        id="email"
+                        placeholder="you@example.com"
+                        autocomplete="email"
+                        required
+                    >
+                </div>
+
+                <div class="form-group">
+                    <label for="password">Create Password</label>
+                    <div class="password-wrap">
+                        <input
+                            type="password"
+                            id="password"
+                            placeholder="At least 8 characters"
+                            autocomplete="new-password"
+                            minlength="8"
+                            required
+                        >
+                        <button type="button" class="toggle" id="togglePassword">
+                            Show
+                        </button>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="confirmPassword">Confirm Password</label>
+                    <div class="password-wrap">
+                        <input
+                            type="password"
+                            id="confirmPassword"
+                            placeholder="Enter password again"
+                            autocomplete="new-password"
+                            required
+                        >
+                        <button type="button" class="toggle" id="toggleConfirm">
+                            Show
+                        </button>
+                    </div>
+                </div>
+
+                <div class="terms">
+                    <input type="checkbox" id="terms" required>
+                    <label for="terms">
+                        I agree to the demo
+                        <a href="#" id="termsLink">terms and conditions</a>.
+                    </label>
+                </div>
+
+                <button type="submit" class="submit-button">
+                    CREATE ACCOUNT
+                </button>
+
+                <div id="message" class="message" role="status"></div>
+
+            </form>
+
+            <p class="login-prompt">
+                Already have an account?
+                <a href="login.html" class="login-link">Sign in</a>
+            </p>
+
+            <p class="note">
+                Front-end demonstration only. Account details are not saved
+                or verified.
+            </p>
+
+        </section>
+    </main>
+```html
+<script>
+    const registerForm = document.getElementById("registerForm");
+    const password = document.getElementById("password");
+    const confirmPassword = document.getElementById("confirmPassword");
+    const message = document.getElementById("message");
+
+    function toggleField(field, button) {
+        const isHidden = field.type === "password";
+
+        field.type = isHidden ? "text" : "password";
+        button.textContent = isHidden ? "Hide" : "Show";
+    }
+
+    document.getElementById("togglePassword")
+        .addEventListener("click", function () {
+            toggleField(password, this);
+        });
+
+    document.getElementById("toggleConfirm")
+        .addEventListener("click", function () {
+            toggleField(confirmPassword, this);
+        });
+
+    registerForm.addEventListener("submit", function (event) {
+        event.preventDefault();
+
+        const name = document.getElementById("name").value.trim();
+        const email = document.getElementById("email")
+            .value.trim().toLowerCase();
+
+        if (name.length < 2) {
+            showMessage("Please enter your full name.", false);
+            return;
+        }
+
+        if (password.value.length < 8) {
+            showMessage("Your password must have at least 8 characters.", false);
+            return;
+        }
+
+        if (password.value !== confirmPassword.value) {
+            showMessage("Your passwords do not match.", false);
+            confirmPassword.focus();
+            return;
+        }
+
+        if (!document.getElementById("terms").checked) {
+            showMessage("Please accept the demo terms to continue.", false);
+            return;
+        }
+
+        let users = [];
+
+        try {
+            users = JSON.parse(
+                localStorage.getItem("timezoneUsers") || "[]"
+            );
+        } catch (error) {
+            showMessage("Unable to access demo account storage.", false);
+            return;
+        }
+
+        const existingUser = users.some(function (user) {
+            return user.email === email;
+        });
+
+        if (existingUser) {
+            showMessage(
+                "This email already has a demo account. Please sign in.",
+                false
+            );
+            return;
+        }
+
+        // Demo only: localStorage is not secure password storage
+        users.push({
+            name: name,
+            email: email,
+            password: password.value
+        });
+
+        localStorage.setItem("timezoneUsers", JSON.stringify(users));
+
+        showMessage(
+            "Registration successful! Taking you to login...",
+            true
+        );
+
+        registerForm.reset();
+
+        password.type = "password";
+        confirmPassword.type = "password";
+        document.getElementById("togglePassword").textContent = "Show";
+        document.getElementById("toggleConfirm").textContent = "Show";
+
+        setTimeout(function () {
+            window.location.href =
+                "login.html?registered=true&email=" +
+                encodeURIComponent(email);
+        }, 1000);
+    });
+
+    document.getElementById("termsLink")
+        .addEventListener("click", function (event) {
+            event.preventDefault();
+
+            showMessage(
+                "This is a demonstration website; no actual terms service is connected.",
+                false
+            );
+        });
+
+    function showMessage(text, success) {
+        message.textContent = text;
+        message.style.display = "block";
+        message.style.background = success ? "#e7f4e9" : "#fff0ed";
+        message.style.color = success ? "#28643b" : "#9c4545";
+    }
+</script>
+```
+    
+
+</body>
+</html>

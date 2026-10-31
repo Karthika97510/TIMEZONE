@@ -1,0 +1,488 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login | TIMEZONE</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            background: #fff5f2;
+            color: #493b3b;
+            min-height: 100vh;
+        }
+
+        .login-header {
+            padding: 22px 7%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: #fffaf5;
+            border-bottom: 1px solid #f1dcd7;
+        }
+
+        .logo {
+            font-size: 28px;
+            font-weight: 800;
+            letter-spacing: 4px;
+            color: #a76672;
+            text-decoration: none;
+        }
+
+        .back-home {
+            color: #9c6670;
+            text-decoration: none;
+            font-size: 14px;
+        }
+
+        .back-home:hover {
+            color: #70414b;
+        }
+
+        .login-layout {
+            min-height: calc(100vh - 80px);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 40px 20px;
+        }
+
+        .login-card {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            max-width: 950px;
+            width: 100%;
+            background: #fffdf9;
+            border-radius: 22px;
+            overflow: hidden;
+            box-shadow: 0 15px 45px rgba(130, 79, 79, 0.12);
+        }
+
+        .login-image {
+            background:
+                linear-gradient(
+                    rgba(88, 53, 51, 0.12),
+                    rgba(88, 53, 51, 0.12)
+                ),
+                url('https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&w=1000&q=85')
+                center / cover;
+            min-height: 560px;
+            display: flex;
+            align-items: flex-end;
+            padding: 35px;
+        }
+
+        .image-caption {
+            color: white;
+            text-shadow: 0 2px 8px rgba(0, 0, 0, 0.35);
+        }
+
+        .image-caption h2 {
+            font-size: 30px;
+            margin-bottom: 10px;
+        }
+
+        .image-caption p {
+            font-size: 14px;
+            line-height: 1.7;
+        }
+
+        .login-form-area {
+            padding: 55px 45px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .eyebrow {
+            color: #b47a83;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            font-size: 11px;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+
+        .login-form-area h1 {
+            font-size: 34px;
+            margin-bottom: 12px;
+            color: #493b3b;
+        }
+
+        .subtitle {
+            color: #897b78;
+            font-size: 14px;
+            line-height: 1.7;
+            margin-bottom: 30px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 13px;
+            font-weight: 600;
+            margin-bottom: 9px;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 14px;
+            border: 1px solid #ead8d3;
+            border-radius: 9px;
+            background: #fffaf7;
+            font-size: 14px;
+            outline: none;
+            color: #493b3b;
+        }
+
+        .form-group input:focus {
+            border-color: #c18a94;
+            box-shadow: 0 0 0 3px rgba(193, 138, 148, 0.12);
+        }
+
+        .password-wrap {
+            position: relative;
+        }
+
+        .password-wrap input {
+            padding-right: 65px;
+        }
+
+        .toggle-password {
+            position: absolute;
+            right: 12px;
+            top: 50%;
+            transform: translateY(-50%);
+            border: none;
+            background: transparent;
+            color: #a76672;
+            cursor: pointer;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        .form-options {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 10px;
+            margin: 2px 0 25px;
+            font-size: 12px;
+        }
+
+        .remember {
+            display: flex;
+            align-items: center;
+            gap: 7px;
+        }
+
+        .remember input {
+            accent-color: #b77c87;
+        }
+
+        .text-link {
+            color: #a76672;
+            text-decoration: none;
+        }
+
+        .text-link:hover {
+            text-decoration: underline;
+        }
+
+        .login-button {
+            width: 100%;
+            padding: 15px;
+            background: #b77c87;
+            border: none;
+            border-radius: 9px;
+            color: white;
+            font-size: 14px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: 0.25s;
+        }
+
+        .login-button:hover {
+            background: #985e69;
+            transform: translateY(-1px);
+        }
+
+        .message {
+            display: none;
+            margin-top: 16px;
+            padding: 12px;
+            border-radius: 8px;
+            font-size: 13px;
+            line-height: 1.5;
+        }
+
+        .register-prompt {
+            text-align: center;
+            margin-top: 25px;
+            font-size: 13px;
+            color: #897b78;
+        }
+
+        .demo-note {
+            margin-top: 22px;
+            font-size: 11px;
+            color: #a0928e;
+            line-height: 1.6;
+            text-align: center;
+        }
+
+        @media (max-width: 700px) {
+            .login-card {
+                grid-template-columns: 1fr;
+                max-width: 440px;
+            }
+
+            .login-image {
+                min-height: 220px;
+                padding: 25px;
+            }
+
+            .image-caption h2 {
+                font-size: 24px;
+            }
+
+            .login-form-area {
+                padding: 35px 25px;
+            }
+
+            .login-form-area h1 {
+                font-size: 29px;
+            }
+
+            .logo {
+                font-size: 22px;
+            }
+        }
+
+        @media (max-width: 380px) {
+            .form-options {
+                align-items: flex-start;
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header class="login-header">
+        <a href="index.html" class="logo">TIMEZONE</a>
+        <a href="index.html" class="back-home">← Back to Shopping</a>
+    </header>
+
+    <main class="login-layout">
+
+        <section class="login-card">
+
+            <div class="login-image">
+                <div class="image-caption">
+                    <h2>Time, beautifully told.</h2>
+                    <p>Discover timeless pieces made for every moment of your life.</p>
+                </div>
+            </div>
+
+            <div class="login-form-area">
+
+                <p class="eyebrow">Welcome to TIMEZONE</p>
+                <h1>Welcome back!</h1>
+                <p class="subtitle">
+                    Sign in to explore your favourites and discover your next
+                    timeless piece.
+                </p>
+
+                <form id="loginForm">
+
+                    <div class="form-group">
+                        <label for="email">Email Address</label>
+                        <input
+                            type="email"
+                            id="email"
+                            placeholder="you@example.com"
+                            autocomplete="email"
+                            required
+                        >
+                    </div>
+
+                    <div class="form-group">
+                        <label for="password">Password</label>
+
+                        <div class="password-wrap">
+                            <input
+                                type="password"
+                                id="password"
+                                placeholder="Enter your password"
+                                autocomplete="current-password"
+                                required
+                            >
+
+                            <button
+                                type="button"
+                                class="toggle-password"
+                                id="togglePassword"
+                            >Show</button>
+                        </div>
+                    </div>
+
+                    <div class="form-options">
+                        <label class="remember">
+                            <input type="checkbox" id="rememberMe">
+                            Remember me
+                        </label>
+
+                        <a href="#" class="text-link" id="forgotPassword">
+                            Forgot password?
+                        </a>
+                    </div>
+
+                    <button type="submit" class="login-button">
+                        SIGN IN
+                    </button>
+
+                    <div id="message" class="message" role="status"></div>
+
+                </form>
+
+                <p class="register-prompt">
+                    New to TIMEZONE?
+                    <a href="register.html" class="text-link">Create an account</a>
+                </p>
+
+                <p class="demo-note">
+                    Front-end demonstration only. No real account or password
+                    is verified.
+                </p>
+
+            </div>
+
+        </section>
+<s
+    </main>
+
+<script>
+    const loginForm = document.getElementById("loginForm");
+    const passwordInput = document.getElementById("password");
+    const togglePassword = document.getElementById("togglePassword");
+    const message = document.getElementById("message");
+
+    // Show or hide password
+    togglePassword.addEventListener("click", function () {
+        const isHidden = passwordInput.type === "password";
+
+        passwordInput.type = isHidden ? "text" : "password";
+        togglePassword.textContent = isHidden ? "Hide" : "Show";
+    });
+
+    // Login form
+    loginForm.addEventListener("submit", function (event) {
+        event.preventDefault();
+
+        const email = document
+            .getElementById("email")
+            .value.trim()
+            .toLowerCase();
+
+        const password = passwordInput.value;
+
+        if (!email || !password) {
+            showMessage("Please enter your email and password.", false);
+            return;
+        }
+
+        // Read demo accounts saved by registration page
+        let users = [];
+
+        try {
+            users = JSON.parse(
+                localStorage.getItem("timezoneUsers") || "[]"
+            );
+        } catch (error) {
+            showMessage("Unable to read demo accounts. Please register again.", false);
+            return;
+        }
+
+        const user = users.find(function (account) {
+            return account.email === email &&
+                   account.password === password;
+        });
+
+        if (!user) {
+            showMessage(
+                "Account not found or password is incorrect. Please register first.",
+                false
+            );
+            return;
+        }
+
+        // Remember demo login state
+        sessionStorage.setItem("timezoneLoggedIn", "true");
+        sessionStorage.setItem("timezoneUserName", user.name);
+        sessionStorage.setItem("timezoneUserEmail", user.email);
+
+        // Optional: remember email on this browser
+        if (document.getElementById("rememberMe").checked) {
+            localStorage.setItem("timezoneRememberEmail", email);
+        } else {
+            localStorage.removeItem("timezoneRememberEmail");
+        }
+
+        showMessage("Login successful! Opening TIMEZONE...", true);
+
+        // Go to the watch store
+        setTimeout(function () {
+            window.location.href = "index.html";
+        }, 700);
+    });
+
+    // Forgot password demo
+    document.getElementById("forgotPassword")
+        .addEventListener("click", function (event) {
+            event.preventDefault();
+
+            showMessage(
+                "Please register a new demo account if you cannot remember your demo password.",
+                false
+            );
+        });
+
+    function showMessage(text, success) {
+        message.textContent = text;
+        message.style.display = "block";
+        message.style.background = success ? "#e7f4e9" : "#fff0ed";
+        message.style.color = success ? "#28643b" : "#9c4545";
+    }
+
+    // Restore remembered email
+    const rememberedEmail = localStorage.getItem("timezoneRememberEmail");
+    const params = new URLSearchParams(window.location.search);
+const registeredEmail = params.get("email");
+
+if (registeredEmail) {
+    document.getElementById("email").value = registeredEmail;
+}
+    if (rememberedEmail) {
+        document.getElementById("email").value = rememberedEmail;
+        document.getElementById("rememberMe").checked = true;
+    }
+</script>
+
+    
+</body>
+</html>

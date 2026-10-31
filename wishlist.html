@@ -1,0 +1,294 @@
+ <escape><!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Wishlist | TIMEZONE</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+        .wishlist-page {
+            max-width: 1200px;
+            margin: auto;
+            padding: 50px 24px 80px;
+            color: #44343a;
+        }
+
+        .wishlist-heading {
+            text-align: center;
+            margin-bottom: 35px;
+        }
+
+        .wishlist-heading .eyebrow {
+            color: #bd6479;
+            letter-spacing: 4px;
+            font-size: 12px;
+            font-weight: bold;
+        }
+
+        .wishlist-heading h1 {
+            font-family: Georgia, serif;
+            font-size: clamp(32px, 5vw, 48px);
+            margin: 12px 0;
+        }
+
+        .wishlist-heading p {
+            color: #806c73;
+        }
+
+        .wishlist-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 24px;
+        }
+
+        .saved-watch {
+            background: #fffaf7;
+            border: 1px solid #f0dfe1;
+            border-radius: 14px;
+            overflow: hidden;
+            box-shadow: 0 5px 18px #68404a0c;
+        }
+
+        .saved-watch img {
+            display: block;
+            width: 100%;
+            height: 240px;
+            object-fit: cover;
+            background: #f8eceb;
+        }
+
+        .saved-watch-info {
+            padding: 18px;
+        }
+
+        .saved-watch-info .category {
+            color: #a66a79;
+            font-size: 12px;
+        }
+
+        .saved-watch-info h3 {
+            margin: 8px 0;
+            font-family: Georgia, serif;
+        }
+
+        .saved-watch-info .price {
+            font-weight: bold;
+            margin: 12px 0;
+        }
+
+        .wishlist-actions {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .wishlist-actions button {
+            padding: 11px;
+            border-radius: 7px;
+            cursor: pointer;
+            font-size: 12px;
+            letter-spacing: 1px;
+        }
+
+        .wishlist-add {
+            background: #bd6479;
+            border: 1px solid #bd6479;
+            color: white;
+        }
+
+        .wishlist-remove {
+            background: transparent;
+            border: 1px solid #dfc3c8;
+            color: #9a5668;
+        }
+
+        .wishlist-empty {
+            text-align: center;
+            padding: 55px 20px;
+            background: #fffaf7;
+            border-radius: 14px;
+            border: 1px solid #f0dfe1;
+        }
+
+        .wishlist-empty .empty-heart {
+            font-size: 55px;
+            color: #bd6479;
+        }
+
+        .wishlist-empty h2 {
+            font-family: Georgia, serif;
+            margin: 15px 0;
+        }
+
+        .wishlist-shop {
+            display: inline-block;
+            margin-top: 12px;
+            padding: 13px 22px;
+            background: #bd6479;
+            color: white;
+            border-radius: 7px;
+            text-decoration: none;
+        }
+
+        .wishlist-notice {
+            text-align: center;
+            color: #9a5668;
+            margin-bottom: 20px;
+        }
+
+        @media (max-width: 520px) {
+            .wishlist-page {
+                padding: 32px 15px 55px;
+            }
+
+            .saved-watch img {
+                height: 210px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <main class="wishlist-page">
+        <header class="wishlist-heading">
+            <p class="eyebrow">YOUR PERSONAL COLLECTION</p>
+            <h1>My Wishlist <span style="color:#bd6479;">♡</span></h1>
+            <p>Your favourite TIMEZONE watches, all in one place.</p>
+        </header>
+
+        <p id="wishlistNotice" class="wishlist-notice" role="status"></p>
+        <section id="wishlistContent" aria-live="polite"></section>
+    </main>
+
+    <script>
+        const WISHLIST_KEY = "timezoneWishlist";
+        const BAG_KEY = "timezoneBag";
+
+        const money = amount => new Intl.NumberFormat("en-IN", {
+            style: "currency",
+            currency: "INR",
+            maximumFractionDigits: 0
+        }).format(amount);
+
+        function getWishlist() {
+            try {
+                const items = JSON.parse(
+                    localStorage.getItem(WISHLIST_KEY) || "[]"
+                );
+                return Array.isArray(items) ? items : [];
+            } catch {
+                return [];
+            }
+        }
+
+        function renderWishlist() {
+            const wishlist = getWishlist();
+            const content = document.getElementById("wishlistContent");
+
+            if (wishlist.length === 0) {
+                content.innerHTML = `
+                    <div class="wishlist-empty">
+                        <div class="empty-heart">♡</div>
+                        <h2>Your wishlist is waiting for love.</h2>
+                        <p>Explore our collections and save the watches you adore.</p>
+                        <a class="wishlist-shop" href="index.html">
+                            EXPLORE COLLECTIONS
+                        </a>
+                    </div>`;
+                return;
+            }
+
+            content.innerHTML = `
+                <div class="wishlist-grid">
+                    ${wishlist.map(product => `
+                        <article class="saved-watch">
+                            <img
+                                src="${product.image}"
+                                alt="${product.name}"
+                                loading="lazy"
+                            >
+                            <div class="saved-watch-info">
+                                <p class="category">${product.category || "TIMEZONE Collection"}</p>
+                                <h3>${product.name}</h3>
+                                <p class="price">${money(Number(product.price) || 0)}</p>
+                                <div class="wishlist-actions">
+                                    <button class="wishlist-add"
+                                        type="button"
+                                        data-add-wishlist="${product.id}">
+                                        ADD TO BAG +
+                                    </button>
+                                    <button class="wishlist-remove"
+                                        type="button"
+                                        data-remove-wishlist="${product.id}">
+                                        REMOVE ♡
+                                    </button>
+                                </div>
+                            </div>
+                        </article>
+                    `).join("")}
+                </div>`;
+        }
+
+        function showNotice(message) {
+            document.getElementById("wishlistNotice").textContent = message;
+        }
+
+        document.addEventListener("click", event => {
+            const removeButton = event.target.closest("[data-remove-wishlist]");
+
+            if (removeButton) {
+                const id = Number(removeButton.dataset.removeWishlist);
+                const wishlist = getWishlist().filter(
+                    product => Number(product.id) !== id
+                );
+
+                localStorage.setItem(WISHLIST_KEY, JSON.stringify(wishlist));
+                renderWishlist();
+                showNotice("Watch removed from your wishlist.");
+                return;
+            }
+
+            const addButton = event.target.closest("[data-add-wishlist]");
+
+            if (addButton) {
+                const id = Number(addButton.dataset.addWishlist);
+                const wishlist = getWishlist();
+                const product = wishlist.find(
+                    item => Number(item.id) === id
+                );
+
+                if (!product) return;
+
+                let bag = [];
+
+                try {
+                    const storedBag = JSON.parse(
+                        localStorage.getItem(BAG_KEY) || "[]"
+                    );
+                    if (Array.isArray(storedBag)) bag = storedBag;
+                } catch {
+                    bag = [];
+                }
+
+                const existing = bag.find(item => Number(item.id) === id);
+
+                if (existing) {
+                    existing.quantity = Math.min(
+                        99,
+                        Math.max(1, Number(existing.quantity) || 1) + 1
+                    );
+                } else {
+                    bag.push({ id, quantity: 1 });
+                }
+
+                localStorage.setItem(BAG_KEY, JSON.stringify(bag));
+                showNotice("Watch added to your shopping bag ♡");
+            }
+        });
+
+        renderWishlist();
+    </script>
+</body>
+</html></escape>
